@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { historiasPorCategoria } from '../data/historias';
+import { colores } from '../theme/colores';
 
 export default function StoryDetailScreen({ route, navigation }) {
   const { historiaId, categoria } = route.params;
@@ -36,36 +37,36 @@ export default function StoryDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 60,
     paddingHorizontal: 24,
   },
   volver: {
-    color: '#555555',
+    color: colores.sutil,
     fontSize: 13,
     marginBottom: 24,
   },
   titulo: {
-    color: '#cc1111',
+    color: colores.acento,
     fontSize: 32,
     fontWeight: 'bold',
   },
   subtitulo: {
-    color: '#888888',
+    color: colores.neblina,
     fontSize: 14,
     marginTop: 4,
     fontStyle: 'italic',
   },
   notaCultural: {
-    backgroundColor: '#1a1008',
+    backgroundColor: colores.notaFondo,
     borderLeftWidth: 2,
-    borderLeftColor: '#b8581f',
+    borderLeftColor: colores.notaBorde,
 borderRadius: 4,
     padding: 14,
     marginTop: 20,
   },
   notaCulturalTexto: {
-    color: '#c97a3f',
+    color: colores.notaTexto,
     fontSize: 13,
     fontStyle: 'italic',
     lineHeight: 20,
@@ -73,12 +74,12 @@ borderRadius: 4,
   linea: {
     width: 40,
     height: 1,
-    backgroundColor: '#333333',
+    backgroundColor: colores.divisor,
     marginVertical: 24,
     alignSelf: 'center',
   },
   cuerpo: {
-    color: '#cccccc',
+    color: colores.cuerpo,
     fontSize: 15,
     lineHeight: 26,
   },

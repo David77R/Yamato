@@ -1,15 +1,39 @@
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
+import { supabase } from '../lib/supabase';
+import { colores } from '../theme/colores';
 
-const categorias = [
-  { id: 'yokai', emoji: '👹', nombre: 'Yokai', descripcion: 'Criaturas y espíritus del folklore' },
-  { id: 'yurei', emoji: '👻', nombre: 'Yurei', descripcion: 'Fantasmas y almas en pena' },
-  { id: 'monogatari', emoji: '📖', nombre: 'Monogatari', descripcion: 'Cuentos y tradición oral japonesa' },
-  { id: 'samurai', emoji: '⚔️', nombre: 'El camino del samurai', descripcion: 'Historias épicas de guerreros' },
-  { id: 'geisha', emoji: '🌸', nombre: 'El baile de una geisha', descripcion: 'Historias del mundo flotante' },
-  { id: 'origen', emoji: '⛩️', nombre: 'El origen de Japón', descripcion: 'Idioma, cultura y creencias' },
-];
 
 export default function ExploreScreen({ navigation }) {
+  const [categorias, setCategorias] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const cargarCategorias = async () => {
+      const { data, error } = await supabase
+        .from('categorias')
+        .select('id, slug, nombre, descripcion, emoji')
+        .order('orden');
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setCategorias(data);
+      }
+      setCargando(false);
+    };
+
+    cargarCategorias();
+  }, []);
+
   return (
     <View style={styles.contenedor}>
 
@@ -20,6 +44,14 @@ export default function ExploreScreen({ navigation }) {
       <Text style={styles.titulo}>Explorar</Text>
       <Text style={styles.subtitulo}>Elige tu camino al misterio</Text>
 
+      {cargando && (
+        <ActivityIndicator color={colores.acento} style={styles.cargando} />
+      )}
+
+      {error && (
+        <Text style={styles.error}>No se pudo cargar: {error}</Text>
+      )}
+
       <FlatList
         data={categorias}
         keyExtractor={(item) => item.id}
@@ -27,7 +59,12 @@ export default function ExploreScreen({ navigation }) {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.tarjeta}
-            onPress={() => navigation.navigate('CategoryList', { categoria: item.id })}
+            onPress={() =>
+              navigation.navigate('CategoryList', {
+                categoria: item.slug,
+                nombreCategoria: item.nombre,
+              })
+            }
           >
             <Text style={styles.emoji}>{item.emoji}</Text>
             <View style={styles.textos}>
@@ -45,23 +82,23 @@ export default function ExploreScreen({ navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 60,
     paddingHorizontal: 24,
   },
   volver: {
-    color: '#555555',
+    color: colores.sutil,
     fontSize: 13,
     marginBottom: 16,
   },
   titulo: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 28,
     fontWeight: 'bold',
     letterSpacing: 1,
   },
   subtitulo: {
-    color: '#666666',
+    color: colores.tenue,
     fontSize: 13,
     marginTop: 4,
     marginBottom: 24,
@@ -69,9 +106,9 @@ const styles = StyleSheet.create({
   tarjeta: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#111111',
+    backgroundColor: colores.superficie,
     borderWidth: 0.5,
-    borderColor: '#222222',
+    borderColor: colores.borde,
     borderRadius: 14,
     padding: 16,
     marginBottom: 10,
@@ -84,13 +121,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   nombre: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 15,
     fontWeight: 'bold',
   },
   descripcion: {
-    color: '#777777',
+    color: colores.neblina,
     fontSize: 11,
     marginTop: 2,
+  },
+  cargando: {
+    marginTop: 40,
+  },
+  error: {
+    color: colores.error,
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

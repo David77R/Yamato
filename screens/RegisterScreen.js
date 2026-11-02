@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { colores } from '../theme/colores';
 
 export default function RegisterScreen({ navigation }) {
   const [nombre, setNombre] = useState('');
@@ -51,7 +52,7 @@ export default function RegisterScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="Tu nombre"
-            placeholderTextColor="#444444"
+            placeholderTextColor={colores.fantasma}
             value={nombre}
             onChangeText={setNombre}
           />
@@ -62,7 +63,7 @@ export default function RegisterScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="tu@correo.com"
-            placeholderTextColor="#444444"
+            placeholderTextColor={colores.fantasma}
             value={correo}
             onChangeText={setCorreo}
             autoCapitalize="none"
@@ -75,7 +76,7 @@ export default function RegisterScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="••••••••"
-            placeholderTextColor="#444444"
+            placeholderTextColor={colores.fantasma}
             value={contrasena}
             onChangeText={setContrasena}
             secureTextEntry
@@ -87,7 +88,7 @@ export default function RegisterScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="••••••••"
-            placeholderTextColor="#444444"
+            placeholderTextColor={colores.fantasma}
             value={confirmarContrasena}
             onChangeText={setConfirmarContrasena}
             secureTextEntry
@@ -117,12 +118,12 @@ export default function RegisterScreen({ navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 60,
     paddingHorizontal: 28,
   },
   volver: {
-    color: '#555555',
+    color: colores.sutil,
     fontSize: 13,
     marginBottom: 24,
   },
@@ -132,12 +133,12 @@ const styles = StyleSheet.create({
   },
   kanji: {
     fontSize: 36,
-    color: '#cc1111',
+    color: colores.acento,
     marginBottom: 8,
   },
   etiqueta: {
     fontSize: 11,
-    color: '#555555',
+    color: colores.sutil,
     letterSpacing: 4,
   },
   campo: {
@@ -145,36 +146,36 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 11,
-    color: '#666666',
+    color: colores.tenue,
     letterSpacing: 1,
     marginBottom: 6,
   },
   input: {
-    backgroundColor: '#0f0f0f',
+    backgroundColor: colores.campo,
     borderWidth: 0.5,
-    borderColor: '#2a2a2a',
+    borderColor: colores.bordeCampo,
     borderLeftWidth: 2,
-    borderLeftColor: '#cc1111',
+    borderLeftColor: colores.acento,
     borderRadius: 2,
     padding: 14,
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 14,
   },
   errorTexto: {
-    color: '#ff5555',
+    color: colores.error,
     fontSize: 12,
     marginBottom: 12,
     textAlign: 'center',
   },
   boton: {
-    backgroundColor: '#cc1111',
+    backgroundColor: colores.acento,
     padding: 14,
     alignItems: 'center',
     marginTop: 8,
     marginBottom: 24,
   },
   botonTexto: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 13,
     letterSpacing: 3,
     fontWeight: 'bold',
@@ -187,11 +188,11 @@ const styles = StyleSheet.create({
   },
   loginTexto: {
     fontSize: 12,
-    color: '#444444',
+    color: colores.fantasma,
   },
   loginLink: {
     fontSize: 12,
-    color: '#cc1111',
+    color: colores.acento,
     letterSpacing: 1,
     textDecorationLine: 'underline',
   },

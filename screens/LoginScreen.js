@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { colores } from '../theme/colores';
 
 export default function LoginScreen({ navigation }) {
   const [correo, setCorreo] = useState('');
@@ -32,7 +33,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="tu@correo.com"
-          placeholderTextColor="#444444"
+          placeholderTextColor={colores.fantasma}
           value={correo}
           onChangeText={setCorreo}
           autoCapitalize="none"
@@ -45,7 +46,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="••••••••"
-          placeholderTextColor="#444444"
+          placeholderTextColor={colores.fantasma}
           value={contrasena}
           onChangeText={setContrasena}
           secureTextEntry
@@ -70,7 +71,7 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 80,
     paddingHorizontal: 28,
   },
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
   },
   kanji: {
     fontSize: 40,
-    color: '#cc1111',
+    color: colores.acento,
     marginBottom: 8,
   },
   etiqueta: {
     fontSize: 11,
-    color: '#555555',
+    color: colores.sutil,
     letterSpacing: 4,
   },
   campo: {
@@ -93,30 +94,30 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 11,
-    color: '#666666',
+    color: colores.tenue,
     letterSpacing: 1,
     marginBottom: 6,
   },
   input: {
-    backgroundColor: '#0f0f0f',
+    backgroundColor: colores.campo,
     borderWidth: 0.5,
-    borderColor: '#2a2a2a',
+    borderColor: colores.bordeCampo,
     borderLeftWidth: 2,
-    borderLeftColor: '#cc1111',
+    borderLeftColor: colores.acento,
     borderRadius: 2,
     padding: 14,
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 14,
   },
   boton: {
-    backgroundColor: '#cc1111',
+    backgroundColor: colores.acento,
     padding: 14,
     alignItems: 'center',
     marginTop: 8,
     marginBottom: 24,
   },
   botonTexto: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 13,
     letterSpacing: 3,
     fontWeight: 'bold',
@@ -129,11 +130,11 @@ const styles = StyleSheet.create({
   },
   registroTexto: {
     fontSize: 12,
-    color: '#444444',
+    color: colores.fantasma,
   },
   registroLink: {
     fontSize: 12,
-    color: '#cc1111',
+    color: colores.acento,
     letterSpacing: 1,
     textDecorationLine: 'underline',
   },

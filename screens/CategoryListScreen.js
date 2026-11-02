@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { historiasPorCategoria } from '../data/historias';
+import { colores } from '../theme/colores';
 
 const nombresCategorias = {
   yokai: 'Yokai',
@@ -51,36 +52,36 @@ export default function CategoryListScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 60,
     paddingHorizontal: 24,
   },
   volver: {
-    color: '#555555',
+    color: colores.sutil,
     fontSize: 13,
     marginBottom: 16,
   },
   titulo: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
   },
   tarjeta: {
-    backgroundColor: '#111111',
+    backgroundColor: colores.superficie,
     borderWidth: 0.5,
-    borderColor: '#222222',
+    borderColor: colores.borde,
     borderRadius: 14,
     padding: 16,
     marginBottom: 10,
   },
   tituloHistoria: {
-    color: '#cc1111',
+    color: colores.acento,
     fontSize: 16,
     fontWeight: 'bold',
   },
   resumen: {
-    color: '#777777',
+    color: colores.neblina,
     fontSize: 12,
     marginTop: 4,
   },
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   vacioTexto: {
-    color: '#333333',
+    color: colores.divisor,
     fontSize: 14,
     fontStyle: 'italic',
     letterSpacing: 2,

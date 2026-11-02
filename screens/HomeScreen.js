@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { colores } from '../theme/colores';
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -63,7 +64,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: colores.fondo,
     paddingTop: 60,
     paddingBottom: 48,
     paddingHorizontal: 24,
@@ -75,32 +76,32 @@ const styles = StyleSheet.create({
   },
   nombreApp: {
     fontSize: 11,
-    color: '#444444',
+    color: colores.fantasma,
     letterSpacing: 6,
     marginBottom: 32,
   },
   kanji: {
     fontSize: 72,
-    color: '#cc1111',
+    color: colores.acento,
     fontWeight: 'bold',
     lineHeight: 76,
   },
   linea: {
     width: 40,
     height: 1,
-    backgroundColor: '#333333',
+    backgroundColor: colores.divisor,
     marginVertical: 24,
   },
   frase1: {
     fontSize: 13,
-    color: '#888888',
+    color: colores.neblina,
     letterSpacing: 1,
     fontStyle: 'italic',
     marginBottom: 4,
   },
   frase2: {
     fontSize: 13,
-    color: '#666666',
+    color: colores.tenue,
     letterSpacing: 1,
     fontStyle: 'italic',
     textAlign: 'center',
@@ -117,9 +118,9 @@ const styles = StyleSheet.create({
   },
   categoria: {
     width: '30%',
-    backgroundColor: '#111111',
+    backgroundColor: colores.superficie,
     borderWidth: 0.5,
-    borderColor: '#222222',
+    borderColor: colores.borde,
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',
@@ -131,18 +132,18 @@ const styles = StyleSheet.create({
   },
   categoriaTexto: {
     fontSize: 10,
-    color: '#666666',
+    color: colores.tenue,
     letterSpacing: 1,
   },
   boton: {
-    backgroundColor: '#cc1111',
+    backgroundColor: colores.acento,
     borderRadius: 12,
     padding: 14,
     alignItems: 'center',
     marginBottom: 16,
   },
   botonTexto: {
-    color: '#ffffff',
+    color: colores.tinta,
     fontSize: 14,
     letterSpacing: 3,
     fontWeight: 'bold',
@@ -153,12 +154,12 @@ const styles = StyleSheet.create({
   },
   loginTexto: {
     fontSize: 11,
-    color: '#333333',
+    color: colores.divisor,
     letterSpacing: 1,
   },
   loginLink: {
     fontSize: 11,
-    color: '#555555',
+    color: colores.sutil,
     letterSpacing: 1,
     textDecorationLine: 'underline',
   },
