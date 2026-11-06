@@ -333,7 +333,37 @@ En la corte ocurrió otra cosa. El chino escrito era asunto de hombres, de funci
 
 Mientras los hombres escribían documentos en una lengua extranjera, las mujeres escribían en la suya. Y así ocurrió que la obra fundacional de la literatura japonesa, y según buena parte de los especialistas la primera novela psicológica del mundo, saliera de la mano de Murasaki Shikibu, dama de la corte, en el sistema que sus contemporáneos consideraban menor.
 
-Los tres sobrevivieron y hoy conviven en una misma frase. Los kanji cargan el significado, el hiragana sostiene la gramática, el katakana recoge lo extranjero. Un idioma que decidió no elegir.', false, 3)
+Los tres sobrevivieron y hoy conviven en una misma frase. Los kanji cargan el significado, el hiragana sostiene la gramática, el katakana recoge lo extranjero. Un idioma que decidió no elegir.', false, 3),
+  ('Susanoo y la serpiente de ocho cabezas', 'De dónde salió la espada imperial', 'De dónde salió la espada de los emperadores', 'La espada que aparece en este relato es el segundo de los tres tesoros imperiales, junto al espejo de Amaterasu. Se afirma que se custodia en el santuario de Atsuta, en Nagoya. Nadie la ha visto, no existen fotografías, y el santuario nunca ha confirmado ni desmentido nada.', 'Después de que su hermana se encerrara en la cueva por su culpa, a Susanoo lo expulsaron del cielo.
+
+Cayó en la provincia de Izumo, junto a un río, y se encontró con un matrimonio de ancianos que lloraba abrazado a una muchacha. Les preguntó qué pasaba. Le contaron que tenían ocho hijas y que cada año venía una serpiente a llevarse una, y que a esta, la última, le tocaba esa noche.
+
+La criatura se llamaba Yamata no Orochi. Tenía ocho cabezas y ocho colas, los ojos del color de las cerezas de invierno, y el cuerpo tan largo que cubría ocho valles y ocho colinas; en el lomo le habían crecido musgo y árboles enteros, como si fuera terreno y no animal.
+
+Susanoo ofreció un trato. Mataría a la serpiente si le daban a la muchacha por esposa. Aceptaron.
+
+Lo que hizo entonces no fue heroico en el sentido corriente. Convirtió a la joven en un peine y se lo puso en el pelo, para tenerla a salvo y a mano. Mandó construir una empalizada con ocho puertas, y en cada puerta una tina con sake fortísimo. Y esperó.
+
+La serpiente llegó, metió una cabeza en cada tina, bebió hasta la última gota y se quedó dormida.
+
+Susanoo la descuartizó con calma. Al llegar a una de las colas, la hoja de su espada se mordió contra algo duro. Abrió la cola y encontró otra espada adentro.
+
+Esa espada se la mandó a su hermana al cielo, como quien pide disculpas con un regalo demasiado caro. Y de ahí pasó, según la tradición, a manos de los emperadores.
+
+Conviene detenerse en eso. El objeto que legitima a la casa imperial más antigua del mundo salió de la cola de un monstruo y llegó al cielo como ofrenda de paz del dios que había causado todo el problema.', true, 4),
+  ('De Yamato a Japón', 'Cómo se llama de verdad este país', 'Por qué el país que llamamos Japón se llama a sí mismo Nihon', 'Ningún japonés llama Japón a su país. Lo llama Nihon, o Nippon. Las dos palabras, Japón y Nihon, vienen exactamente de los mismos dos caracteres: 日本. Solo que leídos en idiomas distintos.', 'El nombre más antiguo no se lo puso Japón, se lo puso China.
+
+En las crónicas chinas aparece como Wa, escrito con un carácter cuya connotación no era halagadora; los filólogos discuten hasta qué punto significaba "sumiso" o "enano", pero nadie sostiene que fuera un cumplido. La corte de Yamato convivió siglos con ese nombre hasta que hizo algo elegante: conservó el sonido y cambió el carácter por otro que se pronuncia igual y significa armonía, 和. Le antepuso el de grande, 大, y quedó 大和. Yamato.
+
+Más tarde, hacia el siglo séptimo, la corte adoptó un nombre nuevo para los documentos oficiales y para presentarse ante China: 日本, origen del sol.
+
+Y ahí está el detalle que casi nadie nota. Ese nombre solo tiene sentido mirado desde afuera. Japón está al este de China; es de China, no de sí mismo, de donde se ve salir el sol por allá. El país se bautizó con la descripción que hacían de él sus vecinos.
+
+El resto del camino es un juego de teléfono de seis siglos. Marco Polo oyó esos caracteres pronunciados en un dialecto del sur de China y escribió Cipangu. Los portugueses llegaron después, los oyeron de boca de comerciantes malayos, y escribieron Japão. De ahí salieron Japan, Japon, Japón.
+
+De modo que cuando en Venezuela decimos Japón estamos usando la transcripción de un veneciano del siglo trece de una pronunciación china de unos caracteres que los japoneses eligieron para describirse tal como los veían desde el continente.
+
+Yamato, mientras tanto, nunca se fue. Sobrevivió dentro del idioma, y es la palabra que los japoneses siguen usando para lo que consideran propio y antiguo: el espíritu yamato, los números yamato, la pintura yamato. No es el nombre del Estado. Es el nombre de lo que estaba antes del Estado.', true, 5)
 ) as v(titulo, subtitulo, resumen, nota_cultural, cuerpo, es_premium, orden)
 where categorias.slug = 'origen';
 
