@@ -1,30 +1,16 @@
-import { useRef } from 'react';
 import {
-  Animated,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import LienzoRevelado from '../components/LienzoRevelado';
+import FondoVivo from '../components/FondoVivo';
 import { colores } from '../theme/colores';
 
-const ARTE = require('../assets/arte/yurei-oscuro.jpg');
-
 export default function HomeScreen({ navigation }) {
-  const pista = useRef(new Animated.Value(1)).current;
-
-  const ocultarPista = () => {
-    Animated.timing(pista, {
-      toValue: 0,
-      duration: 900,
-      useNativeDriver: true,
-    }).start();
-  };
-
   return (
     <View style={styles.raiz}>
-      <LienzoRevelado fuente={ARTE} onPrimerToque={ocultarPista}>
+      <FondoVivo>
         <View style={styles.contenido} pointerEvents="box-none">
 
           <View style={styles.arriba} pointerEvents="box-none">
@@ -36,9 +22,6 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.frase2}>
               Atrévete a ahondar en su{'\n'}misterio y folklore.
             </Text>
-            <Animated.Text style={[styles.pista, { opacity: pista }]}>
-              desliza el dedo en la penumbra
-            </Animated.Text>
           </View>
 
           <View style={styles.abajo} pointerEvents="box-none">
@@ -85,7 +68,7 @@ export default function HomeScreen({ navigation }) {
           </View>
 
         </View>
-      </LienzoRevelado>
+      </FondoVivo>
     </View>
   );
 }
@@ -138,12 +121,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textAlign: 'center',
     lineHeight: 22,
-  },
-  pista: {
-    fontSize: 10,
-    color: colores.sutil,
-    letterSpacing: 2,
-    marginTop: 28,
   },
   abajo: {
     width: '100%',
