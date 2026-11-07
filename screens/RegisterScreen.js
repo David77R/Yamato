@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { crearCuenta, mensajeDeError } from '../lib/auth';
 import { colores } from '../theme/colores';
 
 export default function RegisterScreen({ navigation }) {
@@ -17,8 +18,9 @@ export default function RegisterScreen({ navigation }) {
   const [contrasena, setContrasena] = useState('');
   const [confirmarContrasena, setConfirmarContrasena] = useState('');
   const [error, setError] = useState('');
+  const [cargando, setCargando] = useState(false);
 
-  const manejarRegistro = () => {
+  const manejarRegistro = async () => {
     if (!nombre || !correo || !contrasena) {
       setError('Completa todos los campos');
       return;
@@ -27,8 +29,23 @@ export default function RegisterScreen({ navigation }) {
       setError('Las contraseñas no coinciden');
       return;
     }
+    if (contrasena.length < 6) {
+      setError('La contraseña necesita al menos 6 caracteres');
+      return;
+    }
     setError('');
-    console.log('Registrar:', nombre, correo, contrasena);
+    setCargando(true);
+    const { error: fallo } = await crearCuenta({
+      nombre: nombre.trim(),
+      correo: correo.trim(),
+      contrasena,
+    });
+    setCargando(false);
+    if (fallo) {
+      setError(mensajeDeError(fallo));
+      return;
+    }
+    navigation.navigate('Home');
   };
 
   return (
@@ -99,8 +116,14 @@ export default function RegisterScreen({ navigation }) {
           <Text style={styles.errorTexto}>{error}</Text>
         )}
 
-        <TouchableOpacity style={styles.boton} onPress={manejarRegistro}>
-          <Text style={styles.botonTexto}>SELLAR EL PACTO</Text>
+        <TouchableOpacity
+          style={[styles.boton, cargando && styles.botonInactivo]}
+          onPress={manejarRegistro}
+          disabled={cargando}
+        >
+          <Text style={styles.botonTexto}>
+            {cargando ? 'SELLANDO' : 'SELLAR EL PACTO'}
+          </Text>
         </TouchableOpacity>
 
         <View style={styles.loginFila}>
@@ -166,6 +189,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 12,
     textAlign: 'center',
+  },
+  botonInactivo: {
+    opacity: 0.55,
   },
   boton: {
     backgroundColor: colores.acento,

@@ -8,14 +8,32 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { entrar, mensajeDeError } from '../lib/auth';
 import { colores } from '../theme/colores';
 
 export default function LoginScreen({ navigation }) {
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
+  const [cargando, setCargando] = useState(false);
+  const [error, setError] = useState('');
 
-  const manejarLogin = () => {
-    console.log('Login con:', correo, contrasena);
+  const manejarLogin = async () => {
+    if (!correo || !contrasena) {
+      setError('Escribe tu correo y tu contraseña');
+      return;
+    }
+    setError('');
+    setCargando(true);
+    const { error: fallo } = await entrar({
+      correo: correo.trim(),
+      contrasena,
+    });
+    setCargando(false);
+    if (fallo) {
+      setError(mensajeDeError(fallo));
+      return;
+    }
+    navigation.navigate('Home');
   };
 
   return (
@@ -53,8 +71,16 @@ export default function LoginScreen({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity style={styles.boton} onPress={manejarLogin}>
-        <Text style={styles.botonTexto}>ROMPER EL SELLO</Text>
+      {error !== '' && <Text style={styles.errorTexto}>{error}</Text>}
+
+      <TouchableOpacity
+        style={[styles.boton, cargando && styles.botonInactivo]}
+        onPress={manejarLogin}
+        disabled={cargando}
+      >
+        <Text style={styles.botonTexto}>
+          {cargando ? 'ABRIENDO' : 'ROMPER EL SELLO'}
+        </Text>
       </TouchableOpacity>
 
       <View style={styles.registroFila}>
@@ -108,6 +134,15 @@ const styles = StyleSheet.create({
     padding: 14,
     color: colores.tinta,
     fontSize: 14,
+  },
+  errorTexto: {
+    color: colores.error,
+    fontSize: 12,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  botonInactivo: {
+    opacity: 0.55,
   },
   boton: {
     backgroundColor: colores.acento,
