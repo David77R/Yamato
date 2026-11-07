@@ -1,70 +1,102 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useRef } from 'react';
+import {
+  Animated,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import LienzoRevelado from '../components/LienzoRevelado';
 import { colores } from '../theme/colores';
 
+const ARTE = require('../assets/arte/yurei-oscuro.jpg');
+
 export default function HomeScreen({ navigation }) {
+  const pista = useRef(new Animated.Value(1)).current;
+
+  const ocultarPista = () => {
+    Animated.timing(pista, {
+      toValue: 0,
+      duration: 900,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
-    <View style={styles.contenedor}>
+    <View style={styles.raiz}>
+      <LienzoRevelado fuente={ARTE} onPrimerToque={ocultarPista}>
+        <View style={styles.contenido} pointerEvents="box-none">
 
-      <View style={styles.arriba}>
-        <Text style={styles.nombreApp}>⛩ Y A M A T O ⛩</Text>
-        <Text style={styles.kanji}>大</Text>
-        <Text style={styles.kanji}>和</Text>
-        <View style={styles.linea} />
-        <Text style={styles.frase1}>Japón no es solo anime.</Text>
-        <Text style={styles.frase2}>
-          Atrévete a ahondar en su{'\n'}misterio y folklore.
-        </Text>
-      </View>
+          <View style={styles.arriba} pointerEvents="box-none">
+            <Text style={styles.nombreApp}>⛩ Y A M A T O ⛩</Text>
+            <Text style={styles.kanji}>大</Text>
+            <Text style={styles.kanji}>和</Text>
+            <View style={styles.linea} />
+            <Text style={styles.frase1}>Japón no es solo anime.</Text>
+            <Text style={styles.frase2}>
+              Atrévete a ahondar en su{'\n'}misterio y folklore.
+            </Text>
+            <Animated.Text style={[styles.pista, { opacity: pista }]}>
+              desliza el dedo en la penumbra
+            </Animated.Text>
+          </View>
 
-      <View style={styles.abajo}>
-        <View style={styles.categorias}>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>👹</Text>
-            <Text style={styles.categoriaTexto}>Yokai</Text>
+          <View style={styles.abajo} pointerEvents="box-none">
+            <View style={styles.categorias} pointerEvents="box-none">
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>👹</Text>
+                <Text style={styles.categoriaTexto}>Yokai</Text>
+              </View>
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>👻</Text>
+                <Text style={styles.categoriaTexto}>Yurei</Text>
+              </View>
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>📖</Text>
+                <Text style={styles.categoriaTexto}>Monogatari</Text>
+              </View>
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>⚔️</Text>
+                <Text style={styles.categoriaTexto}>Samurai</Text>
+              </View>
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>🌸</Text>
+                <Text style={styles.categoriaTexto}>Geisha</Text>
+              </View>
+              <View style={styles.categoria}>
+                <Text style={styles.emoji}>⛩️</Text>
+                <Text style={styles.categoriaTexto}>Origen</Text>
+              </View>
+            </View>
+
+            <TouchableOpacity
+              style={styles.boton}
+              onPress={() => navigation.navigate('Explore')}
+            >
+              <Text style={styles.botonTexto}>EXPLORAR</Text>
+            </TouchableOpacity>
+
+            <View style={styles.loginFila} pointerEvents="box-none">
+              <Text style={styles.loginTexto}>Ya tengo cuenta — </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <Text style={styles.loginLink}>Entrar</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>👻</Text>
-            <Text style={styles.categoriaTexto}>Yurei</Text>
-          </View>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>📖</Text>
-            <Text style={styles.categoriaTexto}>Kaidan</Text>
-          </View>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>🎵</Text>
-            <Text style={styles.categoriaTexto}>Folklore</Text>
-          </View>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>🗺️</Text>
-            <Text style={styles.categoriaTexto}>Leyendas</Text>
-          </View>
-          <View style={styles.categoria}>
-            <Text style={styles.emoji}>⛩️</Text>
-            <Text style={styles.categoriaTexto}>Rituales</Text>
-          </View>
+
         </View>
-
-        <TouchableOpacity 
-          style={styles.boton}
-          onPress={() => navigation.navigate('Explore')}
-        >
-          <Text style={styles.botonTexto}>EXPLORAR</Text>
-        </TouchableOpacity>
-
-        <View style={styles.loginFila}>
-          <Text style={styles.loginTexto}>Ya tengo cuenta — </Text>
-          <Text style={styles.loginLink}>Entrar</Text>
-        </View>
-      </View>
-
+      </LienzoRevelado>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  contenedor: {
+  raiz: {
     flex: 1,
     backgroundColor: colores.fondo,
+  },
+  contenido: {
+    flex: 1,
     paddingTop: 60,
     paddingBottom: 48,
     paddingHorizontal: 24,
@@ -107,6 +139,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
   },
+  pista: {
+    fontSize: 10,
+    color: colores.sutil,
+    letterSpacing: 2,
+    marginTop: 28,
+  },
   abajo: {
     width: '100%',
   },
@@ -118,7 +156,7 @@ const styles = StyleSheet.create({
   },
   categoria: {
     width: '30%',
-    backgroundColor: colores.superficie,
+    backgroundColor: 'rgba(26,22,29,0.5)',
     borderWidth: 0.5,
     borderColor: colores.borde,
     borderRadius: 10,
@@ -151,6 +189,7 @@ const styles = StyleSheet.create({
   loginFila: {
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   loginTexto: {
     fontSize: 11,
